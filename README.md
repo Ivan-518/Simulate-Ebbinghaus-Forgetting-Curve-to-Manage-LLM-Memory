@@ -4,9 +4,6 @@
 >
 > *给 AI 装上“类人海马体”：以极低的 Token 成本实现无限长的连贯对话。*
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python](https://img.shields.io/badge/Language-Python-blue.svg)](https://www.python.org/)
-[![Status: Concept](https://img.shields.io/badge/Status-Concept%20%26%20Prototype-orange)](https://github.com/)
 
 ## 项目背景 (Background)
 
@@ -63,20 +60,3 @@ $$Score = (I \times F) - (T \times R)$$
     * 遗忘早已探索过的普通房间描述。
 * **个人学习伴侣 (Personal Learning)**
     * 根据用户的遗忘曲线，反向提取快被遗忘的知识点进行“考查”和复习。
-
-## 系统架构 (Architecture)
-
-坚持 **K.I.S.S (Keep It Simple, Stupid)** 原则，核心载体仅为 Markdown 文件，方便开发者透明化管理和 Debug。
-
-```mermaid
-graph TD
-    User[用户 Prompt] --> System
-    System --> |1. 检索| WM[工作记忆 context.md]
-    System --> |2. 语义唤醒| LTM[长期归档 archive.json]
-    LTM -.-> |3. 提取高相关记忆| WM
-    WM --> |4. 组合上下文| LLM[大语言模型]
-    LLM --> |5. 生成回答| User
-    LLM --> |6. 提炼新记忆 & 打分| NewMem[新记忆条目]
-    NewMem --> System
-    System --> |7. 运行艾宾浩斯算法| WM
-    WM -.-> |8. 剔除低分条目| LTM
